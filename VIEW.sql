@@ -1,0 +1,44 @@
+﻿CREATE DATABASE dbEMIT;
+
+
+CREATE TABLE dbo.tblUser(
+userID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+name NVARCHAR(100) NOT NULL,
+position NVARCHAR(100) NOT NULL,
+email NVARCHAR(100) UNIQUE NOT NULL, 
+phoneNumber NVARCHAR(15),
+dateCreated DATETIME2(0) NOT NULL DEFAULT GETDATE(),
+dateUpdated DATETIME2(0) 
+);
+
+CREATE TABLE dbo.tblUserPassword(
+userPasswordID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+userID INT NOT NULL FOREIGN KEY REFERENCES dbo.tblUser(userID),
+password NVARCHAR(256) NOT NULL,
+dateCreated DATETIME2(0) NOT NULL DEFAULT GETDATE(),
+dateUpdated DATETIME2(0)
+);
+GO
+
+
+CREATE TABLE dbo.tblUser_History (
+    userPasswordHistoryID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+    userID INT NOT NULL FOREIGN KEY REFERENCES dbo.tblUser(userID),
+    passwordHash VARBINARY(256)  NOT NULL, 
+    dateChanged DATETIME2(0) NOT NULL DEFAULT GETDATE()  -- Şifre değişiklik tarihi
+);
+
+
+
+
+
+
+
+
+
+CREATE TABLE dbo.tblUser_History (
+    userPasswordHistoryID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+    userID INT NOT NULL FOREIGN KEY REFERENCES dbo.tblUser(userID),
+    passwordHash VARBINARY(256) NOT NULL, 
+    dateChanged DATETIME2(0) NOT NULL DEFAULT GETDATE()
+);

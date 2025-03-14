@@ -1,6 +1,6 @@
---Satis temsilcisi olamyan siparisler
---Amac ; Satis temsilcisi atanmamis tum siparisleri listelemek. 
--- Tablolar : Sales.SalesOrderHeader, Sales.SalesPerson
+--Orders without a sales representative
+--Purpose; List all orders that do not have a sales representative assigned.
+--Tables: Sales.SalesOrderHeader, Sales.SalesPerson
 
 SELECT 
 soh.SalesOrderID,
@@ -18,4 +18,3 @@ Sales.SalesPerson sp ON soh.SalesPersonID = SP.BusinessEntityID
 WHERE sp.BusinessEntityID IS NULL ; 
 
 
---WHERE sp.BusinessEntityID IS NULL komutu, sadece atis temsilcisi olmayan siparislerin filtrelenmesini saglar. 
